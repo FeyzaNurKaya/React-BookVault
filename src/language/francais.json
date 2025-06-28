@@ -1,0 +1,8 @@
+{
+  "login": "Connexion",
+  "username": "Nom d'utilisateur",
+  "password": "Mot de passe",
+  "products": "Produits",
+  "search": "Rechercher un produit..",
+  "logout": "Se déconnecter"
+} 
