@@ -127,13 +127,5 @@ Bu proje MIT lisansı altında lisanslanmıştır.
 
 ## 👨‍💻 Geliştirici
 
-Bu proje [Adınız] tarafından geliştirilmiştir.
+Bu proje Feyza Nur Kaya tarafından geliştirilmiştir.
 
-## 📞 İletişim
-
-- Email: [email@example.com]
-- GitHub: [github.com/kullaniciadi]
-
----
-
-⭐ Bu projeyi beğendiyseniz yıldız vermeyi unutmayın!
