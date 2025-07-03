@@ -122,7 +122,7 @@ const setStoredToken = (token: string): boolean => {
   try {
     localStorage.setItem(TOKEN_KEY, token);
     //console.log('Token kaydedildi');
-    console.log(TOKEN_KEY, token);
+    //console.log(TOKEN_KEY, token);
     
     const savedToken = getStoredToken();
     if (savedToken !== token) {
@@ -210,17 +210,28 @@ export const authService = {
     if (!saved) {
       throw new Error('Token kaydedilemedi');
     }
+    localStorage.setItem('user_email', credentials.email);
 
     return response.data;
   },
 
   logout: () => {
     removeStoredToken();
+    localStorage.removeItem('user_email');
     window.location.href = '/login';
   },
 
   isAuthenticated: (): boolean => {
     return getStoredToken() !== null;
+  },
+
+  getUserEmail: (): string | null => {
+    try {
+      return localStorage.getItem('user_email');
+    } catch (error) {
+      console.error('Kullanıcı email alınırken hata:', error);
+      return null;
+    }
   }
 };
 

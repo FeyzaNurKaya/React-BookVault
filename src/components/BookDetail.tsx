@@ -87,51 +87,63 @@ export default function BookDetail() {
           </div>
 
           <div className="flex flex-col items-center gap-3">
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-2 mt-2 md:mt-0">
-              {stok.stokcins || '-'}
-            </h1>
-            <div className="border-2 border-pink-500 rounded-lg px-6 py-2 flex flex-col gap-1 min-w-[240px] max-w-[300px] bg-white">
-              <div className="flex items-end gap-2 mt-1">
-                <span className="text-red-500 text-2xl font-semibold leading-none">TRY</span>
-                <span className="text-red-600 font-bold text-6xl leading-none">{stok.kfiyat?.toLocaleString('tr-TR', { minimumFractionDigits: 2 }) || '-'}</span>
+            {stok.stokcins && (
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-2 mt-2 md:mt-0">
+                {stok.stokcins}
+              </h1>
+            )}
+            {stok.kfiyat !== undefined && stok.kfiyat !== null && (
+              <div className="border-2 border-pink-500 rounded-lg px-6 py-2 flex flex-col gap-1 min-w-[240px] max-w-[300px] bg-white">
+                <div className="flex items-end gap-2 mt-1">
+                  <span className="text-red-500 text-2xl font-semibold leading-none">TRY</span>
+                  <span className="text-red-600 font-bold text-6xl leading-none">{stok.kfiyat.toLocaleString('tr-TR', { minimumFractionDigits: 2 })}</span>
+                </div>
               </div>
-            </div>
+            )}
             <div className="flex flex-row mt-2 -ml-24 gap-5">
-                <span className="text-base text-black font-semibold">(Kdv Dahil)</span>
+              <span className="text-base text-black font-semibold">(Kdv Dahil)</span>
+              {stok.kkdv !== undefined && stok.kkdv !== null && (
                 <span className="text-pink-500 text-base font-semibold">
-                  %{stok.kkdv !== undefined ? stok.kkdv : '-'} Puan
+                  %{stok.kkdv} Puan
                 </span>
-              </div>
-            <div className="flex flex-col items-center mt-2">
-              {barcodeUrl ? (
-                <img src={barcodeUrl} alt="Barkod" className="h-14 w-64" />
-              ) : (
-                <div className="text-sm text-red-500">Geçersiz barkod</div>
               )}
             </div>
+            {barcodeUrl && (
+              <div className="flex flex-col items-center mt-2">
+                <img src={barcodeUrl} alt="Barkod" className="h-14 w-64" />
+              </div>
+            )}
           </div>
 
           <div className="flex flex-col gap-3 items-end md:items-start">
             <div className="w-full flex flex-col gap-2 items-end md:items-start">
-              <div className="text-gray-900 rounded-lg font-semibold text-base min-w-[140px]">
-                <span className="font-normal text-gray-500">Liste :</span> {stok.pfiyat1?.toLocaleString('tr-TR', { minimumFractionDigits: 2 }) || '-'}
-              </div>
-              <div className="bg-green-100 text-green-700 px-4 py-2 rounded-lg font-bold text-2xl min-w-[200px] border border-green-200 flex items-start gap-1 justify-start">
-                <i className="ri-discount-percent-line text-3xl"></i>
-                %{stok.kisk !== undefined ? stok.kisk : '-'} indirim
-              </div>
-              <div className="bg-blue-100 text-blue-700 px-4 py-2 rounded-lg font-bold text-2xl min-w-[200px] border border-blue-200 flex items-start gap-1 justify-start">
-                <i className="ri-luggage-cart-fill text-3xl"></i>
-                {stok.smiktar !== undefined ? Math.abs(stok.smiktar) : '-'} Adet
-              </div>
+              {stok.pfiyat1 !== undefined && stok.pfiyat1 !== null && (
+                <div className="text-gray-900 rounded-lg font-semibold text-base min-w-[140px]">
+                  <span className="font-normal text-gray-500">Liste :</span> {stok.pfiyat1.toLocaleString('tr-TR', { minimumFractionDigits: 2 })}
+                </div>
+              )}
+              {stok.kisk !== undefined && stok.kisk !== null && (
+                <div className="bg-green-100 text-green-700 px-4 py-2 rounded-lg font-bold text-2xl min-w-[200px] border border-green-200 flex items-start gap-1 justify-start">
+                  <i className="ri-discount-percent-line text-3xl"></i>
+                  %{stok.kisk} indirim
+                </div>
+              )}
+              {stok.smiktar !== undefined && stok.smiktar !== null && (
+                <div className="bg-blue-100 text-blue-700 px-4 py-2 rounded-lg font-bold text-2xl min-w-[200px] border border-blue-200 flex items-start gap-1 justify-start">
+                  <i className="ri-luggage-cart-fill text-3xl"></i>
+                  {Math.abs(stok.smiktar)} Adet
+                </div>
+              )}
             </div>
             <div className="flex flex-col text-xs font-bold text-gray-600 gap-1 mt-2 w-full">
-              <span>Menşei: <b>{stok.uretici?.ureticiad || '-'}</b></span>
-              <span>Fiyat Güncelleme Tarihi: <b>
-                {stok.stk_date_update
-                  ? new Date(stok.stk_date_update).toLocaleDateString('tr-TR')
-                  : '-'}
-              </b></span>
+              {stok.uretici?.ureticiad && (
+                <span>Menşei: <b>{stok.uretici.ureticiad}</b></span>
+              )}
+              {stok.stk_date_update && (
+                <span>Fiyat Güncelleme Tarihi: <b>
+                  {new Date(stok.stk_date_update).toLocaleDateString('tr-TR')}
+                </b></span>
+              )}
             </div>
             <div className="flex flex-col mt-2 w-full">
               <img src={qrUrl} alt="QR Kod" className="h-42 w-56" />

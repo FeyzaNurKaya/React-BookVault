@@ -48,7 +48,7 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#f1f7f3]">
-      <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-md">
+      <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-md md:m-0 m-4">
         <div className="flex justify-center mb-6">
           <img src="/src/assets/onso.png" alt="Onso Logo" className="h-12" />
         </div>

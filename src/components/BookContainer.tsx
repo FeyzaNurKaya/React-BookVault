@@ -56,7 +56,7 @@ export default function BookContainer({ search, page }: BookContainerProps) {
     slidesToScroll: 1,
     arrows: false,
     autoplay: books.length > 5,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 1000,
     responsive: [
       {
         breakpoint: 1024,
@@ -109,15 +109,15 @@ export default function BookContainer({ search, page }: BookContainerProps) {
            onClick={() => handleBookPress(book)}
            className="bg-white rounded-xl shadow-md hover:shadow-xl hover:border-red-500 hover:ring-2 hover:ring-red-300 border border-gray-200 transition-all duration-300 p-4 w-60 h-[380px] flex items-center justify-center"
            >
-            <img
+            {book.sm_resurl !== null && book.sm_resurl !== undefined && (
+              <img
               src={
-                book.resfile?.trim() ||
-                book.resurl?.trim() ||
                 book.sm_resurl?.trim()
               }
               alt={book.stokcins}
               className="w-48 h-64 object-cover rounded"
             />
+            )}
            </div>
             <div className="mt-3 text-center text-sm font-semibold text-gray-800 w-48 line-clamp-2">
              {book.stokcins}
